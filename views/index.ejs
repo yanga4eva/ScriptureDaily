@@ -1,0 +1,28 @@
+<%include partials/header%>    
+ <div style="padding: 100px">
+        <main role="main" class="flex-shrink-0">
+        <div>
+			<form autocomplete="off" method="POST" action="/" class="form-inline my-2 my-lg-0" style="float: right; z-index: -1;" >
+				<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="verses" name="passageInput" value="">
+				<input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
+			</form>
+            </div>
+  <div class="container col-9" style="clear: both">
+	 <a style="display: block"> <h1 class="mt-5" name="scripture_head" style="width: inherit">1 Nephi 3:7</h1><p style="text-align: right">Last Read yesterday 4:15pm</p></a>
+		<br>
+		<p class="lead" name="scripture_verse">7 And it came to pass that I, Nephi, said unto my father: I will go and do the things which the Lord hath commanded, for I know that the Lord giveth no commandments unto the children of men, save he shall prepare a way for them that they may accomplish the thing which he commandeth them</p>
+		<button type="button" id="read" class="btn btn-secondary" onclick="postTextLast()" style="margin-right: 20px">Back</button><button type="button" id="read" class="btn btn-secondary" onclick="postTextNext()">Next</button>
+  </div>
+<hr>
+  
+  <div style="padding-left: 60px">
+	<p>
+		<button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Mom</button>
+		<button type="button" class="btn btn-outline-secondary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Dad</button>
+		<button type="button" class="btn btn-outline-success" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Siblings</button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Close Relatives</button>
+	</p>
+		</div>
+		</main>
+</div>
+<%include partials/footer%>

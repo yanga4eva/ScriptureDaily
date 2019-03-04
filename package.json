@@ -1,0 +1,25 @@
+{
+  "name": "scripturedaily",
+  "version": "1.0.0",
+  "description": "Daily Scripture Reading APP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanga4eva/ScriptureDaily.git"
+  },
+  "author": "Inyang, Fortunatus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yanga4eva/ScriptureDaily/issues"
+  },
+  "homepage": "https://github.com/yanga4eva/ScriptureDaily#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "innerhtml": "^1.0.2"
+  }
+}
