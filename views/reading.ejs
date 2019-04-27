@@ -3,16 +3,24 @@
         <main role="main" class="flex-shrink-0">
         <div>
 			<form autocomplete="off" method="POST" action="/" class="form-inline my-2 my-lg-0" style="float: right; z-index: -1;" >
-				<input class="form-control mr-sm-2" type="text" placeholder="e.g. Alma 9:3 " aria-label="Search" id="verses" name="passageInput" value="">
+				<input class="form-control mr-sm-2" type="text" placeholder="e.g. Alma 9:3 " aria-label="Search" id="verses" name="passageInput" value= "">
 				<input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
 			</form>
             </div>
   <div class="container col-9" style="clear: both">
-	 <a style="display: block"> <h1 class="mt-5" name="scripture_head" style="width: inherit"><%= passage %></h1><p style="text-align: right">Last Read yesterday 4:15pm</p></a>
+	 <a style="display: block"> 
+		<h1 class="mt-5" name="scripture_head" value = <%= passage %> style="width: inherit"> <%= passage %>
+		</h1>
+		
+		<p style="text-align: right">Last Read yesterday 4:15pm</p></a>
 		<br>
 		<p class="lead" name="scripture_verse"><%= passagetoread %></p>
-		<button type="button" id="read" class="btn btn-secondary" method="POST" action="/previousVerse" style="margin-right: 20px">Previous Verse</button>
-		<input type="button" class="btn btn-secondary" method="GET" value="Next Verse" action="/nextVerse">
+		
+		<form autocomplete="off" method="GET" action="/verse"  >
+		<input name="Previous" type="submit" class="btn btn-secondary" value=  "<%= previousVerse %>" >
+		<input name="next" type="submit" class="btn btn-secondary" value= "<%= nextVerse %>" >
+		</form>
+
   </div>
 <hr>
   

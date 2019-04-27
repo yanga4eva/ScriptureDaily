@@ -8,12 +8,38 @@
 			</form>
             </div>
   <div class="container col-9" style="clear: both">
-	 <a style="display: block"> <h1 class="mt-5" name="scripture_head" style="width: inherit"><%= passage %></h1><p style="text-align: right">Last Read yesterday 4:15pm</p></a>
+	 <a style="display: block"> 
+		<h1 class="mt-5" name="scripture_head" style="width: inherit"><%= passage %></h1>
+			<p style="text-align: right">Last Read yesterday 4:15pm</p>
+		</a>
+
 		<br>
-		<p class="lead" name="scripture_verse"> <% for (var i = 0; i < scriptureArray.length; i++) { %> <p> <%= (i +1) + "   " + scriptureArray[i] %> <% } %> </p>
-		<button type="button" id="read" class="btn btn-secondary" onclick="postTextLast()" style="margin-right: 20px">Previous Chapter</button>
-		<button type="button" id="read" class="btn btn-secondary" onclick="postTextNext()">Next Chapter</button>
+
+		<%for (var passage in passagetoread){%>
+		<% var i; %>
+		<p class="lead" name="scripture_verse"> 
+			<%=passagetoread[passage]%> 
+			<button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="<%= i %>" aria-expanded="false" aria-controls="<%= i %>">More</button>
+		</p>  
+		
+			<div class="collapse" id="<%= i %>">
+				<div class="<% i %>">“I was playing with it first,” six-year-old Romero yelled as he grabbed a toy out of his little sister’s hand. Lolita started to run to their mother, so Romero angrily handed the 
+				toy back to her. They knew that The Church of Jesus Christ of Latter-day Saints was true, and they were baptized. They talked about the gospel at home and read the Book of Mormon together. They were a
+				happy family.
+					<br> 
+				<p style="text-align: right"><i>December 18, 2003 14:06pm</i></p>
+				</div>
+			</div>
+
+		<%}%>
+
+		<form autocomplete="off" method="GET" action="/chapter"  >
+		<input name="Previous" type="submit" class="btn btn-secondary" value=  "<%= previousChapter %>" >
+		<input name="next" type="submit" class="btn btn-secondary" value= "<%= nextChapter %>" >
+		</form>
+
   </div>
+
 <hr>
   
   <div style="padding-left: 60px">
@@ -23,7 +49,7 @@
 		<button type="button" class="btn btn-outline-success" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Siblings</button>
 		<button type="button" class="btn btn-outline-dark" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Close Relatives</button>
 	</p>
-		</div>
-		</main>
+	</div>
+</main>
 </div>
 <%include partials/footer%>

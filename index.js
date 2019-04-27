@@ -2,6 +2,8 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var path = require('path')
 var bookofMormon = require('./Bom')
+var Scripture = require('./scripture')
+
 
 
 var app = express()
@@ -31,59 +33,67 @@ app.get('/', function(req, res) {
 })
 
 app.post('/', function (req, res) {
-    var inputPassage = req.body.passageInput
-    chapterBlock = []
-    var chapterLook;
-    function findverse() {
-        if (inputPassage.includes(":") === true) {
-            for (i = 0; i < bookofMormon.verses.length; i++) {
-                if (bookofMormon.verses[i].reference == inputPassage) {
-                    return (bookofMormon.verses[i].text)
-                }
-            }
-        } else if (inputPassage.includes(":") === false) {
-            for (i = 0; i < bookofMormon.verses.length; i++) {
-                chapterLook = inputPassage + ":"
-                if (bookofMormon.verses[i].reference.includes(chapterLook) === true) {
-                    chapterBlock.push(bookofMormon.verses[i].text)
-                }
-            } return chapterBlock
-        }
-        
-    }
+    passage = req.body.passageInput
+    
 
-    scriptureArray = findverse()
-    if (inputPassage.includes(":") === true) {
+    if (passage.includes(":") == true) {
+        var scriptureInput = new Scripture(passage);
+        scriptureInput.text = scriptureInput.findverse()
+        nex = scriptureInput.nextverse
+        previousVer = scriptureInput.previousVerse
         res.render('reading', {
             title: "Scripture Reading",
-            passage: inputPassage,
-            passagetoread: scriptureArray
+            passage: passage,
+            passagetoread: scriptureInput.text,
+            nextVerse: nex,
+            previousVerse: previousVer
         })
-    } else if (inputPassage.includes(":") === false) {
+    } else {
+        var scriptureInput = new Scripture(passage);
+        scriptureInput.findChapter()
+        
         res.render('chapterReading', {
             title: "Scripture Reading",
-            passage: inputPassage,
-            passagetoread: scriptureArray
+            passage: passage,
+            passagetoread: scriptureInput.chapverses,
+            previousChapter: scriptureInput.previousChapter,
+            nextChapter: scriptureInput.nextChapter
         })
     }
+        
     
 })
 
-app.post('/nextVerse', function (req, res) {
-    var inputPassage = body.scripture_head
-    function nextVerse() {
-        for (i = 0; i < bookofMormon.verses.length; i++) {
-            if (bookofMormon.verses[i].reference == inputPassage) {
-                return (bookofMormon.verses[(i + 1)].text)
-            }
-        }
-    }
-
-    scriptureArray = nextVerse()
+app.get('/Verse', function (req, res) {
+    passage = req.query.next
+    var scriptureInput = new Scripture(passage);
+    scriptureInput.text = scriptureInput.findverse()
+    nex = scriptureInput.nextverse
+    previousVer = scriptureInput.previousVerse
+    
     res.render('reading', {
         title: "Scripture Reading",
-        passage: inputPassage,
-        passagetoread: scriptureArray
+        passage: passage,
+        passagetoread: scriptureInput.text,
+        nextVerse: nex,
+        previousVerse: previousVer
+    })
+})
+
+app.get('/chapter', function (req, res) {
+    passage = req.query.next
+    var scriptureInput = new Scripture(passage);
+    scriptureInput.findChapter()
+    previousChapter = scriptureInput.previousChapter
+    scriptureText = scriptureInput.chapverses
+    nextChapter = scriptureInput.nextChapter
+
+    res.render('chapterReading', {
+        title: "Scripture Reading",
+        passage: passage,
+        passagetoread: scriptureText,
+        previousChapter: previousChapter,
+        nextChapter: nextChapter
     })
 })
 
