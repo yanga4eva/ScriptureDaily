@@ -1,6 +1,3 @@
-const admin = require('firebase-admin');
-
-const db = admin.firestore();
 var express = require('express')
 var bodyParser = require('body-parser')
 var path = require('path')
@@ -30,9 +27,8 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
-  
-  res.render('index', {
-    title: "Scripture Daily"
+    res.render('index', {
+    title: 'Scripture Daily'
     })
 })
 
@@ -41,7 +37,6 @@ app.post('/', function (req, res) {
     
 
     if (passage.includes(":") == true) {
-      
         var scriptureInput = new Scripture(passage);
         scriptureInput.text = scriptureInput.findverse()
         nex = scriptureInput.nextverse
@@ -70,7 +65,6 @@ app.post('/', function (req, res) {
 })
 
 app.get('/Verse', function (req, res) {
-  scriptitle = db.collection('Title).doc('Header).field('header_title')
     passage = req.query.next
     var scriptureInput = new Scripture(passage);
     scriptureInput.text = scriptureInput.findverse()
@@ -78,7 +72,7 @@ app.get('/Verse', function (req, res) {
     previousVer = scriptureInput.previousVerse
     
     res.render('reading', {
-        title: scriptitle,
+        title: "Scripture Reading",
         passage: passage,
         passagetoread: scriptureInput.text,
         nextVerse: nex,
