@@ -29,20 +29,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
-    admin.initializeApp({
-  credential: admin.credential.applicationDefault()
-});
-const db = admin.firestore();
-    
-    const admin = require('firebase-admin');
-
-let serviceAccount = require('path/to/serviceAccountKey.json');
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-let db = admin.firestore();    
+       
     res.render('index', {
     title: 'Scripture Daily'
     })
