@@ -30,18 +30,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
-  admin.initializeApp({
-  credential: admin.credential.applicationDefault()
-});
   
-  let db = admin.firestore();
-  let docRef = db.collection('users').doc('alovelace');
-
-let setAda = docRef.set({
-  first: 'Ada',
-  last: 'Lovelace',
-  born: 1815
-});  
   res.render('index', {
     title: "Scripture Daily"
     })
