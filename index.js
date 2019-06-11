@@ -45,6 +45,7 @@ app.post('/', function (req, res) {
     
 
     if (passage.includes(":") == true) {
+      
         var scriptureInput = new Scripture(passage);
         scriptureInput.text = scriptureInput.findverse()
         nex = scriptureInput.nextverse
@@ -73,6 +74,7 @@ app.post('/', function (req, res) {
 })
 
 app.get('/Verse', function (req, res) {
+  scriptitle = db.collection('Title).doc('Header).field('header_title')
     passage = req.query.next
     var scriptureInput = new Scripture(passage);
     scriptureInput.text = scriptureInput.findverse()
@@ -80,7 +82,7 @@ app.get('/Verse', function (req, res) {
     previousVer = scriptureInput.previousVerse
     
     res.render('reading', {
-        title: "Scripture Reading",
+        title: scriptitle,
         passage: passage,
         passagetoread: scriptureInput.text,
         nextVerse: nex,
