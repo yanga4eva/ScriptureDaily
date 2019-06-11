@@ -1,9 +1,5 @@
 const admin = require('firebase-admin');
 
-admin.initializeApp({
-  credential: admin.credential.applicationDefault()
-});
-
 const db = admin.firestore();
 var express = require('express')
 var bodyParser = require('body-parser')
@@ -34,7 +30,19 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
-        res.render('index', {
+  admin.initializeApp({
+  credential: admin.credential.applicationDefault()
+});
+  
+  let db = admin.firestore();
+  let docRef = db.collection('users').doc('alovelace');
+
+let setAda = docRef.set({
+  first: 'Ada',
+  last: 'Lovelace',
+  born: 1815
+});  
+  res.render('index', {
     title: "Scripture Daily"
     })
 })
