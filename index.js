@@ -34,9 +34,8 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
-  scriptitle = db.collection('Title).doc('Header).field('header_title')
-      res.render('index', {
-    title: scriptitle
+        res.render('index', {
+    title: "Scripture Daily"
     })
 })
 
