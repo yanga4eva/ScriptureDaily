@@ -1,3 +1,10 @@
+const admin = require('firebase-admin');
+
+admin.initializeApp({
+  credential: admin.credential.applicationDefault()
+});
+
+const db = admin.firestore();
 var express = require('express')
 var bodyParser = require('body-parser')
 var path = require('path')
