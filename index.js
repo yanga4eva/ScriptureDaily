@@ -34,6 +34,15 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
+  let aTuringRef = db.collection('users').doc('aturing');
+
+let setAlan = aTuringRef.set({
+  'first': 'Alan',
+  'middle': 'Mathison',
+  'last': 'Turing',
+  'born': 1912
+});
+  
     res.render('index', {
     title: 'Scripture Daily'
     })
