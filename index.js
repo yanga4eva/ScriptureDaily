@@ -34,13 +34,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
-    var docRef = db.collection('users').doc('alovelace');
-
-var setAda = docRef.set({
-  first: 'Ada',
-  last: 'Lovelace',
-  born: 1815
-});
+   
     res.render('index', {
     title: 'Scripture Daily'
     })
@@ -79,6 +73,13 @@ app.post('/', function (req, res) {
 })
 
 app.get('/Verse', function (req, res) {
+   var docRef = db.collection('users').doc('alovelace');
+
+var setAda = docRef.set({
+  first: 'Ada',
+  last: 'Lovelace',
+  born: 1815
+});
     passage = req.query.next
     var scriptureInput = new Scripture(passage);
     scriptureInput.text = scriptureInput.findverse()
