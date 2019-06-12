@@ -7,7 +7,7 @@ var Scripture = require('./scripture')
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("path/to/serviceAccountKey.json");
+var serviceAccount = require("/rhub_yanga4eva_scripturedaily/keyfile.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
