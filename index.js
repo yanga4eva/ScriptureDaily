@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
-    var docRef = db.collection('users').doc('alovelace');
+    var docRef = db.collection('Title').doc('Header');
 
 var setAda = docRef.set({
   first: 'Ada',
