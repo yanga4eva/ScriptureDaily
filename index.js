@@ -4,7 +4,16 @@ var path = require('path')
 var bookofMormon = require('./Bom')
 var Scripture = require('./scripture')
 
-const admin = require('firebase-admin');
+
+var admin = require("firebase-admin");
+
+var serviceAccount = require("path/to/serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://scriptureapp-243315.firebaseio.com"
+});
+
 
 
 
