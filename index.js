@@ -5,16 +5,12 @@ var bookofMormon = require('./Bom')
 var Scripture = require('./scripture')
 
 
-var admin = require("firebase-admin");
+const Firestore = require('@google-cloud/firestore');
 
-var serviceAccount = require("/rhub_yanga4eva_scripturedaily/keyfile.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://scriptureapp-243315.firebaseio.com"
+const db = new Firestore({
+  projectId: 'scriptureapp-243315',
+  keyFilename: '/rhub_yanga4eva_scripturedaily/keyfile.json',
 });
-
-
 
 
 var app = express()
@@ -38,13 +34,13 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
-    var docRef = db.collection('Title').doc('Header');
+    var docRef = db.collection('users').doc('alovelace');
 
 var setAda = docRef.set({
   first: 'Ada',
   last: 'Lovelace',
   born: 1815
-});   
+});
     res.render('index', {
     title: 'Scripture Daily'
     })
